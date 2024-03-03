@@ -12,14 +12,14 @@
     'website': "http://www.buhl.be",
 
     'category': 'Customizations',
-    'version': '0.1.8.7',
+    'version': '17.0.0.1',
     'license': 'LGPL-3',
 
     # any module necessary for this one to work correctly
     'depends': [
-        'account', 
+        'account',
         'base',
-        'base_automation', 
+        'base_automation',
         'crm',
         'hr',
         'industry_fsm_report',
@@ -43,7 +43,7 @@
         'report/mrporder.xml',
         'report/purchase.xml',
         'views/account_bank_statement.xml',
-        'views/recouvrement.xml',
+        'views/account_move.xml',
         'views/crm_lead_view.xml',
         'views/purchase_view.xml',
         'views/project_task.xml',
