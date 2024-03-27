@@ -36,13 +36,15 @@ class SaleOrder(models.Model):
             else:
                 if order.state not in ('sale', 'done'):
                     order.invoice_payment_status = 'no'
-                elif any(invoice.payment_state == 'not_paid' for invoice in related_invoices):
+                elif all(invoice.payment_state == 'not_paid' for invoice in related_invoices):
                     order.invoice_payment_status = 'not_paid'
                 elif any(invoice.payment_state == 'in_payment' for invoice in related_invoices):
                     order.invoice_payment_status = 'in_payment'
                 elif all(invoice.payment_state == 'paid' for invoice in related_invoices):
                     order.invoice_payment_status = 'paid'
                 elif any(invoice.payment_state == 'partial' for invoice in related_invoices):
+                    order.invoice_payment_status = 'partially_paid'
+                elif any(invoice.payment_state == 'paid' for invoice in related_invoices) and any(invoice.payment_state == 'not_paid' for invoice in related_invoices):
                     order.invoice_payment_status = 'partially_paid'
                 else:
                     order.invoice_payment_status = 'no'
